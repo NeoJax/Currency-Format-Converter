@@ -6,6 +6,7 @@ namespace Currency_Format_Converter
     {
         static void Main(string[] args)
         {
+            // Setting up the variables and prompting the user for their numbers
             Console.WriteLine("Please enter 3 numbers in U.S. Dollars. \nFirst Number: ");
             decimal num1 = Math.Round(decimal.Parse(Console.ReadLine()), 2);
             Console.WriteLine("Second Number: ");
@@ -16,6 +17,8 @@ namespace Currency_Format_Converter
             decimal average = Math.Round((num1 + num2 + num3)/3, 2);
             decimal smallest = num1;
             decimal largest = num1;
+
+            // Determining the largest and smallest numbers
             if (num2 < num1) 
             {
                 smallest = num2;
@@ -30,6 +33,8 @@ namespace Currency_Format_Converter
             {
                 largest = num3;
             }
+
+            // Printing the average, smallest, and largest. Also converting the currencies
             Console.WriteLine("Average : {0}\nSmallest: {1}\nLargest : {2}", average, smallest, largest);
             decimal swedishTotal = Math.Round(total * 9.7m, 2);
             int japaneseTotal = Decimal.ToInt32(Math.Round(total * 108.21m));
