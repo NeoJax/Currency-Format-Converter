@@ -47,6 +47,7 @@ namespace Currency_Format_Converter
             string swedishTotal = totalInt.ToString("C", svSE);
             string japaneseTotal = totalInt.ToString("C", jaJP);
             string thaiTotal = totalInt.ToString("C", thTH);
+            // Please note that certain symbols may not show up and may print their currency code
             Console.WriteLine("Total Amount in US Dollars   : {0}\nTotal Amount in Swedish Krona: {1}\n" +
                               "Total Amount in Japanese Yen : {2}\nTotal Amount in Thai Baht    : {3}",
                               total, swedishTotal, japaneseTotal, thaiTotal);
