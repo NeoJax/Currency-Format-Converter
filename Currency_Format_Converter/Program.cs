@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Currency_Format_Converter
 {
@@ -13,34 +14,41 @@ namespace Currency_Format_Converter
             decimal num2 = Math.Round(decimal.Parse(Console.ReadLine()), 2);
             Console.WriteLine("Third Number: ");
             decimal num3 = Math.Round(decimal.Parse(Console.ReadLine()), 2);
-            decimal total = num1 + num2 + num3;
+            decimal[] numArray = new decimal[] { num1, num2, num3 };
+            decimal totalInt = num1 + num2 + num3;
             decimal average = Math.Round((num1 + num2 + num3)/3, 2);
             decimal smallest = num1;
             decimal largest = num1;
+            NumberFormatInfo enUS = new CultureInfo("en-US").NumberFormat;
+            NumberFormatInfo svSE = new CultureInfo("sv-SE").NumberFormat;
+            NumberFormatInfo jaJP = new CultureInfo("ja-JP").NumberFormat;
+            NumberFormatInfo thTH = new CultureInfo("th-TH").NumberFormat;
 
             // Determining the largest and smallest numbers
-            if (num2 < num1) 
+            for (int i = 0; i < numArray.Length; i++)
             {
-                smallest = num2;
-            } else if (num3 < num1)
-            {
-                smallest = num3;
-            }
-            if (num2 > num1) 
-            {
-                largest = num2;
-            } else if (num3 > num1)
-            {
-                largest = num3;
+                if (numArray[i] < smallest)
+                {
+                    smallest = numArray[i];
+                }
+
+                if (numArray[i] > largest)
+                {
+                    largest = numArray[i];
+                }
             }
 
             // Printing the average, smallest, and largest. Also converting the currencies
             Console.WriteLine("Average : {0}\nSmallest: {1}\nLargest : {2}", average, smallest, largest);
-            decimal swedishTotal = Math.Round(total * 9.7m, 2);
-            int japaneseTotal = Decimal.ToInt32(Math.Round(total * 108.21m));
-            decimal thaiTotal = Math.Round(total * 30.51m, 2);
-            Console.WriteLine("Total Amount in US Dollars   : ${0}\nTotal Amount in Swedish Krona: {1}kr\n" +
-                              "Total Amount in Japanese Yen : ¥{2}\nTotal Amount in Thai Baht    : ฿{3}",
+            decimal swedishTotalInt = Math.Round(totalInt * 9.7m, 2);
+            int japaneseTotalInt = Decimal.ToInt32(Math.Round(totalInt * 108.21m));
+            decimal thaiTotalInt = Math.Round(totalInt * 30.51m, 2);
+            string total  = totalInt.ToString( "C", enUS);
+            string swedishTotal = totalInt.ToString("C", svSE);
+            string japaneseTotal = totalInt.ToString("C", jaJP);
+            string thaiTotal = totalInt.ToString("C", thTH);
+            Console.WriteLine("Total Amount in US Dollars   : {0}\nTotal Amount in Swedish Krona: {1}\n" +
+                              "Total Amount in Japanese Yen : {2}\nTotal Amount in Thai Baht    : {3}",
                               total, swedishTotal, japaneseTotal, thaiTotal);
         }
     }
